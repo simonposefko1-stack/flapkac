@@ -113,7 +113,9 @@ int main() {
 
     
     while(WindowShouldClose() == false)
-    {
+    {   
+
+        
         
         //hitboxy
         if (IsKeyPressed(KEY_H))
@@ -228,47 +230,21 @@ int main() {
             pipe1.x -= pipe1.pipe_V;
             pipe2.x -= pipe2.pipe_V;
 
-            //
         }
 
         //kolizie-----------------------------------------------
         
-            Rectangle flappy_hitbox = {
-                (float)flappyX - flappy.width / 2,
-                (float)flappyY - flappy.height / 2,
-                (float)flappy.width,
-                (float)flappy.height
-            };
+            Rectangle flappy_hitbox = {(float)flappyX - flappy.width / 2, (float)flappyY - flappy.height / 2, (float)flappy.width, (float)flappy.height};
 
             //pipe1
-            Rectangle pipe1H_hitbox = {
-                (float)pipe1.x,
-                (float)pipe1.pipeH_Y,
-                (float)pipeH.width,
-                (float)pipeH.height
-            };
+            Rectangle pipe1H_hitbox = {(float)pipe1.x, (float)pipe1.pipeH_Y, (float)pipeH.width, (float)pipeH.height};
 
-            Rectangle pipe1D_hitbox = {
-                (float)pipe1.x,
-                (float)pipe1.pipeD_Y,
-                (float)pipeD.width,
-                (float)pipeD.height
-            };
+            Rectangle pipe1D_hitbox = {(float)pipe1.x, (float)pipe1.pipeD_Y, (float)pipeD.width, (float)pipeD.height};
 
             //pipe2
-            Rectangle pipe2H_hitbox = {
-                (float)pipe2.x,
-                (float)pipe2.pipeH_Y,
-                (float)pipeH.width,
-                (float)pipeH.height
-            };
+            Rectangle pipe2H_hitbox = {(float)pipe2.x, (float)pipe2.pipeH_Y, (float)pipeH.width, (float)pipeH.height};
 
-            Rectangle pipe2D_hitbox = {
-                (float)pipe2.x,
-                (float)pipe2.pipeD_Y,
-                (float)pipeD.width,
-                (float)pipeD.height
-            };
+            Rectangle pipe2D_hitbox = {(float)pipe2.x, (float)pipe2.pipeD_Y, (float)pipeD.width, (float)pipeD.height};
 
 
             //kontrola kolizie
@@ -352,50 +328,23 @@ int main() {
             gravitacia = 0;
             }
         
-        if(hitboxy == true){
+        if(hitboxy == true){                 //----------HITBOXY---------------
 
-            DrawRectangleLines(
-                    flappy_hitbox.x,
-                    flappy_hitbox.y,
-                    flappy_hitbox.width,
-                    flappy_hitbox.height,
-                    RED
-                );
+            DrawRectangleLines(flappy_hitbox.x, flappy_hitbox.y, flappy_hitbox.width, flappy_hitbox.height, RED);
 
-                DrawRectangleLines(
-                    pipe1H_hitbox.x,
-                    pipe1H_hitbox.y,
-                    pipe1H_hitbox.width,
-                    pipe1H_hitbox.height,
-                    RED
-                );
+            DrawRectangleLines(pipe1H_hitbox.x, pipe1H_hitbox.y, pipe1H_hitbox.width, pipe1H_hitbox.height, RED);
+            
+            DrawRectangleLines(pipe1D_hitbox.x, pipe1D_hitbox.y, pipe1D_hitbox.width, pipe1D_hitbox.height, RED);
 
-                DrawRectangleLines(
-                    pipe1D_hitbox.x,
-                    pipe1D_hitbox.y,
-                    pipe1D_hitbox.width,
-                    pipe1D_hitbox.height,
-                    RED
-                );
+            DrawRectangleLines(pipe2H_hitbox.x, pipe2H_hitbox.y, pipe2H_hitbox.width, pipe2H_hitbox.height, RED);
 
-                DrawRectangleLines(
-                    pipe2H_hitbox.x,
-                    pipe2H_hitbox.y,
-                    pipe2H_hitbox.width,
-                    pipe2H_hitbox.height,
-                    RED
-                );
-
-                DrawRectangleLines(
-                    pipe2D_hitbox.x,
-                    pipe2D_hitbox.y,
-                    pipe2D_hitbox.width,
-                    pipe2D_hitbox.height,
-                    RED
-                );
+            DrawRectangleLines(pipe2D_hitbox.x, pipe2D_hitbox.y, pipe2D_hitbox.width, pipe2D_hitbox.height, RED);
         }
 
         
+        if(debug){DrawFPS(250, 20);}
+        
+
         EndDrawing();//---------------------------------
     }
     
