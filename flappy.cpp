@@ -53,6 +53,8 @@ int main() {
     UnloadImage(ikona);
 
     bool hitboxy = false;   //<------------------- HITBOXY on/off
+    bool debug = false;     //<------------------- DEBUG on/off
+    bool noclip = false;    //<------------------- NOCLIP on/off 
 
     //zvuky
     Sound point = LoadSound("./assets/sounds/point.ogg");
@@ -113,6 +115,24 @@ int main() {
     while(WindowShouldClose() == false)
     {
         
+        //hitboxy
+        if (IsKeyPressed(KEY_H))
+        {
+            hitboxy = !hitboxy;
+        }
+        
+        //debug
+        if (IsKeyPressed(KEY_D))
+        {
+            debug = !debug;
+        }
+
+        //noclip
+        if (IsKeyPressed(KEY_N))
+        {
+            noclip = !noclip;
+        }
+        
         //restart hry
         if (IsKeyPressed(KEY_R))
         {
@@ -126,7 +146,7 @@ int main() {
             flappyV = 0;
             flappyR = 0;
 
-            //gravitacia = 0.5;
+            gravitacia = 0.5;
 
             pipe1.x = 700;
             pipe2.x = 1100;
@@ -252,7 +272,7 @@ int main() {
 
 
             //kontrola kolizie
-            if (hraZacala == true && gameOver == false){
+            if (hraZacala == true && gameOver == false && noclip == false){
 
             if (CheckCollisionRecs(flappy_hitbox, pipe1H_hitbox) ||
                 CheckCollisionRecs(flappy_hitbox, pipe1D_hitbox) ||
@@ -304,6 +324,20 @@ int main() {
 
         //skore-------------------------------
         DrawText(TextFormat("%i", skore), width / 2, 50, 50, BLACK);
+
+        if(debug){
+        //DrawText(TextFormat("%f", flappyV), 20, 20, 25, BLUE);
+        DrawText(TextFormat("flappyV: %.1f", flappyV), 20, 20, 25, BLACK);
+        DrawText(TextFormat("flappyY: %.1f", flappyY), 20, 50, 25, BLACK);
+        
+        DrawText(TextFormat("hraZacala: %s", hraZacala ? "true" : "false"), 20, 80, 25, BLACK);
+        DrawText(TextFormat("gameOver: %s", gameOver ? "true" : "false"), 20, 110, 25, BLACK);      }
+
+        if (noclip || debug){
+
+            DrawText(TextFormat("noclip: %s", noclip ? "true" : "false"), 20, 150, 25, RED);
+
+        }
 
         //gameover------------------------
         if(gameOver == true)
